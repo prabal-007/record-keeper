@@ -106,10 +106,7 @@ class emp
 	 default: gotoxy(20,22); cprintf("Invalid choice..Renter Plz.");
        } //end switch...
 
-
      }//end terminator loop..
-
-      // getch();
 
    } //end main..
     void display(char *str[])
@@ -129,32 +126,30 @@ class emp
        gotoxy(20,5);   cout<<headmsg;
        gotoxy(20,22);  cprintf("%s",footmsg);
 
-      //making of box.. numeric keypad
-      //ascii code: alt 201: É , alt 205: Í , alt 187: » , alt 186: º ,
-      //alt 204: Ì , alt 185: ¹ , alt 200: È , alt 188: ¼
+      //making of box.. 
       textcolor(2);   //GREEN
-     gotoxy(18,3); cprintf("�|||||||||||||||||||||||||||||||||||||||||�»");
-       gotoxy(18,4); cout<<"º" ;                 gotoxy(60,4); cout<<"º" ;
-       gotoxy(18,5); cout<<"º"  ;                gotoxy(60,5); cout<<"º";
-       gotoxy(18,6); cout<<"º";                  gotoxy(60,6); cout<<"º";
-     gotoxy(18,7); cprintf("�|||||||||||||||||||||||||||||||||||||||||||�");
-       gotoxy(18,8); cout<<"º";                  gotoxy(60,8); cout<<"º";
-       gotoxy(18,9); cout<<"º";                  gotoxy(60,9); cout<<"º";
-      gotoxy(18,10); cout<<"º";                 gotoxy(60,10); cout<<"º";
-      gotoxy(18,11); cout<<"º";                 gotoxy(60,11); cout<<"º";
-      gotoxy(18,12); cout<<"º";                 gotoxy(60,12); cout<<"º" ;
-      gotoxy(18,13); cout<<"º";                 gotoxy(60,13); cout<<"º";
-      gotoxy(18,14); cout<<"º";                 gotoxy(60,14); cout<<"º";
-      gotoxy(18,15); cout<<"º";                 gotoxy(60,15); cout<<"º";
-      gotoxy(18,16); cout<<"º";                 gotoxy(60,16); cout<<"º";
-      gotoxy(18,17); cout<<"º";                 gotoxy(60,17); cout<<"º";
-      gotoxy(18,18); cout<<"º";                 gotoxy(60,18); cout<<"º";
-      gotoxy(18,19); cout<<"º";                 gotoxy(60,19); cout<<"º";
-      gotoxy(18,20); cout<<"º";                 gotoxy(60,20); cout<<"º";
-    gotoxy(18,21); cprintf("Ì||||||||||||||||||||||||||||||||||||||||||�");
-      gotoxy(18,22); cout<<"º";                 gotoxy(60,22); cout<<"º";
-      gotoxy(18,23); cout<<"º";                 gotoxy(60,23); cout<<"º";
-    gotoxy(18,24); cprintf("È�|||||||||||||||||||||||||||||||||||||||||�");
+     gotoxy(18,3); cprintf("Ã|||||||||||||||||||||||||||||||||||||||||ÃÂ»");
+       gotoxy(18,4); cout<<"Âº" ;                 gotoxy(60,4); cout<<"Âº" ;
+       gotoxy(18,5); cout<<"Âº"  ;                gotoxy(60,5); cout<<"Âº";
+       gotoxy(18,6); cout<<"Âº";                  gotoxy(60,6); cout<<"Âº";
+     gotoxy(18,7); cprintf("Ã|||||||||||||||||||||||||||||||||||||||||||¹");
+       gotoxy(18,8); cout<<"Âº";                  gotoxy(60,8); cout<<"Âº";
+       gotoxy(18,9); cout<<"Âº";                  gotoxy(60,9); cout<<"Âº";
+      gotoxy(18,10); cout<<"Âº";                 gotoxy(60,10); cout<<"Âº";
+      gotoxy(18,11); cout<<"Âº";                 gotoxy(60,11); cout<<"Âº";
+      gotoxy(18,12); cout<<"Âº";                 gotoxy(60,12); cout<<"Âº" ;
+      gotoxy(18,13); cout<<"Âº";                 gotoxy(60,13); cout<<"Âº";
+      gotoxy(18,14); cout<<"Âº";                 gotoxy(60,14); cout<<"Âº";
+      gotoxy(18,15); cout<<"Âº";                 gotoxy(60,15); cout<<"Âº";
+      gotoxy(18,16); cout<<"Âº";                 gotoxy(60,16); cout<<"Âº";
+      gotoxy(18,17); cout<<"Âº";                 gotoxy(60,17); cout<<"Âº";
+      gotoxy(18,18); cout<<"Âº";                 gotoxy(60,18); cout<<"Âº";
+      gotoxy(18,19); cout<<"Âº";                 gotoxy(60,19); cout<<"Âº";
+      gotoxy(18,20); cout<<"Âº";                 gotoxy(60,20); cout<<"Âº";
+    gotoxy(18,21); cprintf("ÃŒ||||||||||||||||||||||||||||||||||||||||||¹");
+      gotoxy(18,22); cout<<"Âº";                 gotoxy(60,22); cout<<"Âº";
+      gotoxy(18,23); cout<<"Âº";                 gotoxy(60,23); cout<<"Âº";
+    gotoxy(18,24); cprintf("ÃˆÃ|||||||||||||||||||||||||||||||||||||||||¼");
 	textcolor(WHITE);
      } //end box...........................
 
@@ -164,7 +159,7 @@ class emp
      clrscr();
      emp e;
      int empno; char nm[20]; int age;char city[20];
-       headmsg="ÍÍÍ  Add New Emp. Record  ÍÍÍ";
+       headmsg="ÃÃÃ  Add New Emp. Record  ÃÃÃ";
        display(empmenu);
        gotoxy(35,8);   cin>>empno  ;
        if(e.checkduplicateempno(empno) == 1)
@@ -184,56 +179,8 @@ class emp
      fs.close();
      gotoxy(20,22); cprintf("Record Added Successfully.");
     }//end addrec()..........................
-  /*
-    void updaterec()
-    {
-      clrscr();
-      int empno;
-      int searchflag=0; //let item not found.
-      //step 1 ask user
-      headmsg="::Enter Empno to Update Record::";
-      display(empmenu);
-      gotoxy(35,8);cin>>empno;
-      //step 2 open file in read mode to find empno record:
-      fstream fs;
-      fs.open("emp.dat",ios::in|ios::binary);
-      fstream fout;
-      fout.open("temp.dat",ios::app|ios::binary);
-      emp e;
-      while(fs.read( (char*)&e,sizeof(emp) ) )
-      {
-	if(e.getempno() == empno)
-	 {
-	 searchflag=1; //found.
-       //ask user to input nm,age,city..
-       char nm[20]; int age; char city[20];
-       gotoxy(35,10);  fflush(stdin); gets(nm) ;
-       gotoxy(35,12);  cin>>age ;
-       gotoxy(35,14);  fflush(stdin);gets(city) ;
-       //update e object:
-       e.setdata(empno,nm,age,city);
-       //	 fout.seekp(-1*sizeof(emp),ios::cur);
-	 }//end if.............
-	 fout.write((char*)&e, sizeof(emp));
-
-      } //end while..
-      fs.close(); fout.close(); //must close streams.. mandatory step..
-
-      if(searchflag == 1)
-       {
-	 remove("emp.dat");
-	 rename("temp.dat","emp.dat");
-		 //oldname, newname..
-	 gotoxy(20,22); cprintf("Empno updated successfully");
-       } //end if..
-      else if(searchflag == 0)
-      {
-	gotoxy(20,22); cprintf("Given Empno Not Exist!!");
-       }
-
-    } //end updaterec()...
-
-   */
+	 
+	 
     void updaterec()
     {
       clrscr();
@@ -269,7 +216,7 @@ class emp
 
 
       } //end while..
-      fs.close(); //must close streams.. mandatory step..
+      fs.close(); //must close streams.. mandatory..
 
       if(searchflag == 1)
        {
@@ -289,12 +236,13 @@ class emp
        clrscr();
        headmsg="::Enter EmpNo. To Delete Record::";
        display(empmenu);
-       int searchflag=0; //let item not found.
+       int searchflag=0; //if item not found.
        fstream fs;
        fs.open("emp.dat",ios::in|ios::binary);
        fstream fout;
        fout.open("temp.dat",ios::out|ios::binary);
-       //dont set app mode, del process wont work properly..
+       //in set app mode, del process wont work properly..
+	    
 	int empno;
        //cout<<"\n enter emp no: ";
        gotoxy(35,8); cin>>empno;
@@ -306,7 +254,7 @@ class emp
 	    else
 	      fout.write((char*)&e, sizeof(emp));
 	 } //end while...
-	   //must close the streams. mandatory step here..!!
+	   // close the streams. mandatory..!!
 	   fout.close(); fs.close();
 	  if(searchflag == 1)
 	    {
@@ -332,7 +280,6 @@ class emp
 	fs.open("emp.dat",ios::in|ios::binary);
 	while(fs.read((char*)&e, sizeof(e)) )
 	  {
-		 //cout<<"\n tellg:"<<fs.tellg();
 	    if(empno == e.getempno() )
 	     {
 	      e.showempinfo();
@@ -352,14 +299,13 @@ class emp
 	int i=0;
 	emp e;
 	fstream fs;
-       //	cout<<"\n rec size: "<<sizeof(emp); //44 bytes.
 	fs.open("emp.dat",ios::in|ios::binary);
        cout<<"\n tellg:"<<fs.tellg(); //0 ..   44..  88..   132
 				     //  1st rec 2nd   3rd    4th rec..
       cout<<"\nsize of emp: "<<sizeof(emp);
 	    //	 fs.seekg(44,ios::beg);// moves to 2nd rec..
   gotoxy(5,5);
-  cprintf("ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»");
+  cprintf("Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»");
   gotoxy(10,6);
   cout<<empmenu[0];
   gotoxy(30,6);
@@ -369,7 +315,7 @@ class emp
   gotoxy(70,6);
   cout<<empmenu[3];
   gotoxy(5,7);
-  cout<<"ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼"<<endl;
+  cout<<"ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼"<<endl;
 	while(fs.read((char*)&e,sizeof(emp)  ) )
 	  {
       gotoxy(1,8+i); cout<<"loc"<<fs.tellg();
