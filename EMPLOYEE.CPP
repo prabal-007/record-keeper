@@ -4,10 +4,12 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<dos.h>
+
 void addrec();  void updaterec();  void delrec();
 void showrec(); void showallrec();
 void box();
 void display(char* []);
+
 char *headmsg="headmessge";
 char *footmsg="";
 char *empmenu[10]={"Emp.No","Name","Age","City","","",""};//4
@@ -119,7 +121,7 @@ class emp
        gotoxy(20,18);  cout<<str[5];
        gotoxy(20,20);  cout<<str[6];
        box();
-     } //end display........................
+     } //end display..
 
     void box()
      {
@@ -151,7 +153,7 @@ class emp
       gotoxy(18,23); cout<<"Âº";                 gotoxy(60,23); cout<<"Âº";
     gotoxy(18,24); cprintf("ÃˆÃ|||||||||||||||||||||||||||||||||||||||||¼");
 	textcolor(WHITE);
-     } //end box...........................
+     } //end box...
 
    void addrec()
     {
@@ -178,7 +180,7 @@ class emp
      fs.write((char*)&e,sizeof(emp) );
      fs.close();
      gotoxy(20,22); cprintf("Record Added Successfully.");
-    }//end addrec()..........................
+    }//end 
 	 
 	 
     void updaterec()
@@ -241,7 +243,6 @@ class emp
        fs.open("emp.dat",ios::in|ios::binary);
        fstream fout;
        fout.open("temp.dat",ios::out|ios::binary);
-       //in set app mode, del process wont work properly..
 	    
 	int empno;
        //cout<<"\n enter emp no: ";
@@ -303,7 +304,7 @@ class emp
        cout<<"\n tellg:"<<fs.tellg(); //0 ..   44..  88..   132
 				     //  1st rec 2nd   3rd    4th rec..
       cout<<"\nsize of emp: "<<sizeof(emp);
-	    //	 fs.seekg(44,ios::beg);// moves to 2nd rec..
+	   
   gotoxy(5,5);
   cprintf("Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»");
   gotoxy(10,6);
